@@ -1,0 +1,35 @@
+<html>
+<head>
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="../css/animate.css">
+    <script src="../lib/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="../model/model.js"></script>
+    <script src="../controller/controller.js"></script>
+    <title>Flipkart Search</title>
+</head>
+<body ng-app="flipkartsearch" ng-controller="flipkartcontroller">
+    <h1 id="h">FLIPKART</h1>
+    <input type="text" placeholder="What are you thinking today ?!?" id="i" ng-model="search">
+    <button id="b">Search</button>
+    <span>Sort by : </span> 
+    <select ng-model="sortby" ng-init="sortby='name'">
+        <option>name</option>
+        <option>price</option>
+        <option>colour</option>
+    </select>
+    <input type="checkbox" ng-model="reverseorder" ng-init="reverseorder=false" id="c"><span>Reverse Order</span>
+    <table align="center">
+        <tr ng-repeat="item in list|filter:search|orderBy:sortby:reverseorder">
+            <td><img src="{{item.img}}"></td>
+            <td>
+                <ul>
+                    <li>{{item.name}}</li>
+                    <li>{{item.colour}}</li>
+                    <li>{{item.price}}</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
